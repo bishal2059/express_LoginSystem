@@ -17,13 +17,12 @@ const addUser = function (req, res) {
       .status(200)
       .json(["Username Already Taken. Please use Another username"]);
   } else {
-    res
-      .status(201)
-      .render("account", {
-        title: "Account created",
-        heading: "Congrats Your Account has been created",
-        subheading: `Username:${req.body.username}`,
-      });
+    users.push(req.body);
+    res.status(201).render("account", {
+      title: "Account created",
+      heading: "Congrats Your Account has been created",
+      subheading: `Username:${req.body.username}`,
+    });
   }
 };
 
