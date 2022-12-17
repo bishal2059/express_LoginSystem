@@ -15,7 +15,7 @@ const logincheck = function (req, res) {
       data.username === req.body.username && data.password === req.body.password
     );
   });
-  console.log(userObj);
+  // console.log(userObj);
   if (!userObj) {
     res.status(200).json(["Username or Password is incorrect"]);
   } else {
