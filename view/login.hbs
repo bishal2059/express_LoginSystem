@@ -1,18 +1,48 @@
 <html lang="en">
   <head>
-    <title>{{title}}</title>
+    <title>LOGIN</title>
   </head>
   <link rel="stylesheet" href="/css/login.css" />
   <script defer src="/js/login.js"></script>
   <body>
-    <h1>{{heading}}</h1>
-    <h2>{{subheading}}</h2>
-    <form id="login" autocomplete="off">
-      <input type="text" id="username" placeholder="Enter your Username" />
-      <input type="password" id="password" placeholder="Enter your Password" />
-      <input type="submit" value="Login" />
-    </form>
-    {{signup}}
-    <a href="/signUp"> Sign Up </a>
+    <div class="container">
+      <div class="screen">
+        <div class="screen__content">
+          <form class="login" id="login">
+            <div class="login__field">
+              <i class="login__icon fas fa-user"></i>
+              <input
+                type="text"
+                class="login__input"
+                id="username"
+                placeholder="User name"
+                autocomplete="off"
+                required
+              />
+            </div>
+            <div class="login__field">
+              <i class="login__icon fas fa-lock"></i>
+              <input
+                type="password"
+                class="login__input"
+                id="password"
+                placeholder="Password"
+                required
+              />
+              <div class="login__field">
+              <p style="font-family: Helvetica; color:rgba(0, 0, 0, 0.801)" id="error"></p>
+            </div>
+            </div>
+            <button class="button login__submit">
+              <span class="button__text" >Log In</span>
+            </button>
+          </form>
+          <div class="social-login">
+            <h3> <a href="/signup">Sign Up</a></h3>
+          </div>
+        </div>
+        </div>
+      </div>
+    </div>
   </body>
 </html>

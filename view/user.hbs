@@ -1,12 +1,27 @@
 <html lang="en">
   <head>
     <link rel="stylesheet" href="/css/user.css" />
-    <title>{{title}}</title>
+    <title>User Page</title>
   </head>
   <body>
-    {{heading}}
-    <a href="/">Logout</a>
-    <h1>Access Granted</h1>
-    <h2>Name:{{user}}</h2>
+    <div class="user">
+      <img src="/img/profile.png" alt="user" class="profilepic" />
+      <p>
+        <span class="des">Name: </span>
+        <span>{{Name}}</span>
+      </p>
+      <p>
+        <span class="des">Sex: </span>
+        <span>{{Gender}}</span>
+      </p>
+      <p>
+        <span class="des">Date of Birth: </span>
+        <span>{{DateofBirth}}</span>
+      </p>
+      <p>
+        <span class="des">User Name:</span>
+        <span> {{username}}</span>
+      </p>
+    </div>
   </body>
 </html>

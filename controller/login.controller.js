@@ -1,30 +1,25 @@
 const users = require("../models/users");
 
 const loginRender = function (req, res) {
-  res.status(201).render("login", {
-    title: "Login System",
-    heading: "Login Verification",
-    subheading: "Login...",
-    signup: "Don't have an Account ",
-  });
+  return res.status(200).render("login");
 };
 
 const logincheck = function (req, res) {
   const userObj = users.find(function (data) {
-    return (
-      data.username === req.body.username && data.password === req.body.password
-    );
+    return data.userName === req.body.userName;
   });
-  // console.log(userObj);
   if (!userObj) {
-    res.status(200).json(["Username or Password is incorrect"]);
-  } else {
-    res.set("Content-Type", "text/html");
-    res.status(201).render("user", {
-      title: "Welcome!",
-      user: `${userObj.firstName} ${userObj.lastName}`,
-    });
+    return res.status(400).json({ error: "Invalid Username" });
   }
+  if (userObj.password !== req.body.password) {
+    return res.status(400).json({ error: "Invalid password" });
+  }
+  res.status(200).render("user", {
+    Name: `${userObj.firstName} ${userObj.lastName}`,
+    Gender: userObj.gender,
+    DateofBirth: userObj.dateOfBirth.slice(0, 10),
+    username: userObj.userName,
+  });
 };
 
 module.exports = {

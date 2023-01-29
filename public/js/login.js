@@ -3,16 +3,18 @@
 const loginEle = document.querySelector("#login");
 const userEle = document.querySelector("#username");
 const passwordEle = document.querySelector("#password");
+const error = document.querySelector("#error");
 
 loginEle.addEventListener("submit", (e) => {
   e.preventDefault();
+  error.textContent = "";
   userEle.focus();
   const data = {
-    username: userEle.value,
+    userName: userEle.value,
     password: passwordEle.value,
   };
   userEle.value = passwordEle.value = "";
-  fetch(window.location.href, {
+  fetch("http://localhost:3000/", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -20,18 +22,17 @@ loginEle.addEventListener("submit", (e) => {
     body: JSON.stringify(data),
   })
     .then((res) => {
-      // console.log(res);
-      if (res.status === 201) return res.text();
-      if (res.status === 200) return res.json();
-    })
-    .then((d) => {
-      if (d.length === 1) {
-        alert(d[0]);
-      } else {
-        document.documentElement.innerHTML = d;
+      if (res.status === 400) {
+        res.json().then((data) => {
+          error.textContent = data?.error;
+        });
+      } else if (res.status === 200) {
+        res.text().then((data) => {
+          document.body.innerHTML = data;
+        });
       }
     })
     .catch((err) => {
-      console.log(err.message);
+      console.error(err.message);
     });
 });

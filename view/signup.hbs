@@ -1,38 +1,103 @@
 <html lang="en">
   <head>
-    <title>{{title}}</title>
+    <title>Sign Up</title>
     <link rel="stylesheet" href="/css/signup.css" />
     <script defer src="/js/signup.js"></script>
   </head>
   <body>
-    <h1>{{heading}}</h1>
-    <h2>{{subheading}}</h2>
-    <form autocomplete="off">
-      <label for="fistName"> First Name: </label>
-      <input type="text" id="SignUpfirstName" name="firstName" />
-      <br />
-      <label for="lastName"> LastName: </label>
-      <input type="text" id="SignUplastName" name="lastName" />
-      <br />
-      <label for="gender"> Gender: </label>
-      <select id="SignUpgender" name="gender">
-        <option value="Male">Male</option>
-        <option value="Female">Female</option>
-      </select>
-      <br />
-      <label for="birthYear">Date of Birth:</label>
-      <input type="date" name="birthYear" id="SignUpbirthYear" />
-      <br />
-      <label for="userName">UserName:</label>
-      <input type="text" name="userName" id="SignUpuserName" />
-      <br />
-      <label for="password">Password:</label>
-      <input type="password" name="password" id="SignUppassword" />
-      <br />
-      <label for="password_">Confirm Password:</label>
-      <input type="password" name="password_" id="SignUppassword_" />
-      <br />
-      <button type="submit" id="signUp">SignUp</button>
-    </form>
+    <div class="form_wrapper">
+      <div class="form_container">
+        <div class="title_container">
+          <h2>Create New Account</h2>
+        </div>
+        <div class="row clearfix">
+          <div class="">
+            <form>
+              <div class="input_field">
+                <span><i aria-hidden="true" class="fa fa-envelope"></i></span>
+                <input
+                  type="text"
+                  name="userName"
+                  placeholder="Username"
+                  id="SignUpuserName"
+                  required
+                />
+              </div>
+              <div class="input_field">
+                <span><i aria-hidden="true" class="fa fa-lock"></i></span>
+                <input
+                  type="password"
+                  name="password"
+                  placeholder="Password"
+                  id="SignUppassword"
+                  required
+                />
+              </div>
+              <div class="input_field">
+                <span><i aria-hidden="true" class="fa fa-lock"></i></span>
+                <input
+                  type="password"
+                  name="password"
+                  placeholder="Re-type Password"
+                  id="SignUppassword_"
+                  required
+                />
+              </div>
+
+              <div class="row clearfix">
+                <div class="col_half">
+                  <div class="input_field">
+                    <span><i aria-hidden="true" class="fa fa-user"></i></span>
+                    <input
+                      type="text"
+                      name="name"
+                      placeholder="First Name"
+                      id="SignUpfirstName"
+                      required
+                    />
+                  </div>
+                </div>
+                <div class="col_half">
+                  <div class="input_field">
+                    <span><i aria-hidden="true" class="fa fa-user"></i></span>
+                    <input
+                      type="text"
+                      name="name"
+                      placeholder="Last Name"
+                      id="SignUplastName"
+                      required
+                    />
+                  </div>
+                </div>
+              </div>
+              <div class="input_field">
+                <label for="dateOfBirth">Date of Birth: </label>
+                <input
+                  type="date"
+                  id="SignUpbirthYear"
+                  name="dateOfBirth"
+                  required
+                />
+              </div>
+              <div class="input_field">
+                <label for="gender">Gender: </label>
+                <select name="gender" id="SignUpgender">
+                  <option value="Male">Male</option>
+                  <option value="Female">Female</option>
+                </select>
+              </div>
+              <div
+                style="text-align: center; color:red"
+                class="input_field"
+                id="error"
+              >
+              </div>
+              <input class="button" type="submit" value="Register" />
+
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
   </body>
 </html>

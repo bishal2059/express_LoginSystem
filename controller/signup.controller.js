@@ -1,11 +1,7 @@
 const users = require("../models/users");
 
 const signUpUI = function (req, res) {
-  res.render("signup", {
-    title: "signUp",
-    heading: "Create an Account",
-    subheading: "Sign Up...",
-  });
+  res.render("signup", {});
 };
 
 const addUser = function (req, res) {
@@ -14,14 +10,21 @@ const addUser = function (req, res) {
   });
   if (duplicate) {
     res
-      .status(200)
+      .status(400)
       .json(["Username Already Taken. Please use Another username"]);
   } else {
-    users.push(req.body);
-    res.status(201).render("account", {
-      title: "Account created",
-      heading: "Congrats Your Account has been created",
-      subheading: `Username:${req.body.username}`,
+    users.push({
+      firstName: req.body.firstName,
+      lastName: req.body.lastName,
+      gender: req.body.gender,
+      dateOfBirth: req.body.dob,
+      userName: req.body.username,
+      password: req.body.password,
+    });
+    console.log(req.body);
+    res.status(200).render("account", {
+      name: `${req.body.firstName} ${req.body.lastName}`,
+      username: req.body.username,
     });
   }
 };

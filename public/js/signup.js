@@ -6,8 +6,11 @@ const signUpuserName = document.querySelector("#SignUpuserName");
 const signUpPassword = document.querySelector("#SignUppassword");
 const signUpcPassword = document.querySelector("#SignUppassword_");
 
-document.querySelector("form").addEventListener("click", function (e) {
+const errorEl = document.querySelector("#error");
+
+document.querySelector("form").addEventListener("submit", function (e) {
   e.preventDefault();
+  errorEl.textContent = "";
   checkCorrectSignUp();
 });
 
@@ -31,12 +34,12 @@ const checkCorrectSignUp = function () {
     )
   )
     return;
-  //Post request follows:
+
   const data = {
     firstName: signUpfirstName.value,
     lastName: signUplastName.value,
     gender: signUpgender.value,
-    dob: new Date(signUpbirthYear).toISOString,
+    dob: signUpbirthYear.value,
     username: signUpuserName.value,
     password: signUpPassword.value,
   };
@@ -48,12 +51,15 @@ const checkCorrectSignUp = function () {
     body: JSON.stringify(data),
   })
     .then((res) => {
-      if (res.status === 201) return res.text();
-      if (res.status === 200) return res.json();
-    })
-    .then((data) => {
-      if (data.length === 1) alert(data[0]);
-      else document.documentElement.innerHTML = data;
+      if (res.status === 400) {
+        res.json().then((data) => {
+          error.textContent = data?.error;
+        });
+      } else if (res.status === 200) {
+        res.text().then((data) => {
+          document.body.innerHTML = data;
+        });
+      }
     })
     .catch((err) => {
       console.log(err);
@@ -113,5 +119,5 @@ function onlyLetters(str) {
 }
 
 const displayErrorSignUp = function (mess) {
-  alert(mess);
+  errorEl.textContent = mess;
 };
